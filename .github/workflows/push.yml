@@ -1,0 +1,24 @@
+name: Weekly Timecard Reminder
+
+on:
+  schedule:
+    # 每周五下午 5:00 触发 (北京时间 17:00 = UTC 09:00)
+    # 格式：分 时 日 月 周
+    - cron: '0 9 * * 5'
+  workflow_dispatch: 
+
+jobs:
+  push-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Timecard Reminder
+        run: |
+          curl "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=867ee6cb-48d4-4d32-a7ae-9e9ebf216712" \
+          -H 'Content-Type: application/json' \
+          -d '{
+               "msgtype": "text",
+               "text": {
+                   "content": "友友们，记得填写本周的timecard。\n\n【温馨提示】\n电脑填写连接：https://thoughtworks.lightning.force.com/lightning/n/TimeEntry\n\n手机填写链接：https://thoughtworks.lightning.force.com/c/TimecardApp.app",
+                   "mentioned_list": ["@all"]
+               }
+          }'
