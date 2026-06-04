@@ -2,9 +2,9 @@ name: Weekly Timecard Reminder
 
 on:
   schedule:
-    # 每周五下午 5:00 触发 (北京时间 17:00 = UTC 09:00)
-    # 格式：分 时 日 月 周
-    - cron: '0 8 * * 5'
+    # 每周五下午 3:00 触发 (北京时间 15:00 = UTC 07:00)
+    # 格式：分 时 日 月 周    
+    - cron: '0 7 * * 5'
   workflow_dispatch: 
 
 jobs:
